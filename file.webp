@@ -1,0 +1,47 @@
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Online Notepad</title>
+    <style>
+        #notepad {
+            width: 100%;
+            height: 90vh;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="increaseFontSize()">Increase Font Size</button>
+    <button onclick="decreaseFontSize()">Decrease Font Size</button>
+    <textarea id="notepad"></textarea>
+
+    <script>
+        var notepad = document.getElementById('notepad');
+        var fontSize = 16; // Initial font size
+
+        // Load saved text if available
+        if(localStorage.getItem('notepad')) {
+            notepad.value = localStorage.getItem('notepad');
+        }
+
+        // Save text to local storage every second
+        setInterval(function() {
+            localStorage.setItem('notepad', notepad.value);
+        }, 1000);
+
+        function increaseFontSize() {
+            fontSize++;
+            notepad.style.fontSize = fontSize + 'px';
+        }
+
+        function decreaseFontSize() {
+            if(fontSize > 1) {
+                fontSize--;
+                notepad.style.fontSize = fontSize + 'px';
+            }
+        }
+    </script>
+</body>
+</html>
